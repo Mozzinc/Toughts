@@ -1,0 +1,136 @@
+## Mini Tutorial: Comandos Básicos e Guia para Iniciantes em NoSQL e Cassandra
+
+### Introdução ao NoSQL
+
+**NoSQL** (Not Only SQL) refere-se a uma classe de sistemas de gerenciamento de banco de dados que não aderem ao modelo tradicional de banco de dados relacional. Eles são projetados para armazenar, recuperar e gerenciar dados de maneiras que permitem alta performance e flexibilidade. As principais categorias de bancos de dados NoSQL incluem:
+
+1. **Document Stores**: MongoDB, CouchDB
+2. **Key-Value Stores**: Redis, DynamoDB
+3. **Column-Family Stores**: Cassandra, HBase
+4. **Graph Databases**: Neo4j, OrientDB
+
+### Por que usar NoSQL?
+
+- **Escalabilidade Horizontal**: Facilita a distribuição dos dados em múltiplos servidores.
+- **Flexibilidade de Esquema**: Não requer um esquema fixo, permite mudanças dinâmicas na estrutura dos dados.
+- **Desempenho**: Otimizado para operações de leitura e escrita rápidas.
+- **Modelo de Dados Adequado**: Ideal para certos tipos de aplicativos, como redes sociais, análise de grandes volumes de dados, e-commerce, etc.
+
+### Introdução ao Apache Cassandra
+
+**Apache Cassandra** é um banco de dados NoSQL distribuído e de alta disponibilidade que gerencia grandes volumes de dados em muitos servidores sem ponto único de falha. Ele é ideal para aplicações que requerem alta escalabilidade e redundância.
+
+#### Características do Cassandra:
+
+- **Arquitetura Distribuída**: Sem ponto único de falha.
+- **Escalabilidade Linear**: Facilmente escalável adicionando novos nós ao cluster.
+- **Alta Disponibilidade**: Projetado para ser tolerante a falhas.
+- **Modelo de Dados**: Baseado em um modelo de coluna larga (Column-Family).
+
+### Instalando Apache Cassandra no macOS
+
+1. **Instalação via Homebrew**:
+   ```bash
+   brew install cassandra
+   ```
+
+2. **Iniciando o Cassandra**:
+   ```bash
+   brew services start cassandra
+   ```
+
+3. **Verificando o Status**:
+   ```bash
+   nodetool status
+   ```
+
+### Comandos Básicos do Cassandra
+
+1. **Iniciar o CQLSH**:
+   ```bash
+   cqlsh
+   ```
+
+2. **Criar um Keyspace**:
+   ```cql
+   CREATE KEYSPACE mykeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+   ```
+
+3. **Usar um Keyspace**:
+   ```cql
+   USE mykeyspace;
+   ```
+
+4. **Criar uma Tabela**:
+   ```cql
+   CREATE TABLE users (
+       user_id UUID PRIMARY KEY,
+       name TEXT,
+       age INT
+   );
+   ```
+
+5. **Inserir Dados**:
+   ```cql
+   INSERT INTO users (user_id, name, age) VALUES (uuid(), 'John Doe', 30);
+   ```
+
+6. **Consultar Dados**:
+   ```cql
+   SELECT * FROM users;
+   ```
+
+### Mini Guia para Iniciantes
+
+#### Passo 1: Compreender o Modelo de Dados
+
+- **Keyspace**: É o contêiner principal para dados em Cassandra, similar a um banco de dados em sistemas relacionais.
+- **Tabela**: Dentro de um keyspace, você define tabelas que contêm seus dados.
+- **Linha**: As linhas em Cassandra são identificadas por chaves primárias únicas.
+- **Coluna**: Cada linha é composta por múltiplas colunas.
+
+#### Passo 2: Projeto de Esquema
+
+- Defina os keyspaces com estratégias de replicação adequadas.
+- Crie tabelas que suportam suas consultas de leitura e escrita de forma eficiente.
+- Use chaves compostas e índices secundários com cautela para otimizar o desempenho.
+
+#### Passo 3: Operações Básicas
+
+- **Inserções e Atualizações**:
+  ```cql
+  INSERT INTO users (user_id, name, age) VALUES (uuid(), 'Jane Doe', 25);
+  ```
+
+- **Consultas**:
+  ```cql
+  SELECT name, age FROM users WHERE user_id = <specific-uuid>;
+  ```
+
+- **Deleções**:
+  ```cql
+  DELETE FROM users WHERE user_id = <specific-uuid>;
+  ```
+
+#### Passo 4: Manutenção e Monitoramento
+
+- Use o `nodetool` para monitorar e gerenciar o cluster:
+  ```bash
+  nodetool status
+  nodetool flush
+  nodetool repair
+  ```
+
+- Verifique os logs de Cassandra para identificar e solucionar problemas:
+  ```bash
+  tail -f /usr/local/var/log/cassandra/system.log
+  ```
+
+#### Recursos Adicionais
+
+- **Documentação Oficial do Cassandra**: [Apache Cassandra Documentation](http://cassandra.apache.org/doc/latest/)
+- **Tutoriais e Cursos**:
+  - [DataStax Academy](https://academy.datastax.com/)
+  - [Cassandra na Prática - Curso Completo](https://www.udemy.com/course/cassandra-na-pratica/)
+
+Este mini guia deve ajudá-lo a começar com Cassandra e NoSQL. Se precisar de mais assistência ou tiver dúvidas específicas, sinta-se à vontade para perguntar!

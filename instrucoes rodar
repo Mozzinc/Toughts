@@ -1,0 +1,46 @@
+
+
+### Instruções de Instalação do Projeto
+
+#### 1. Instalar Ferramentas Necessárias
+1. **Visual Studio Code (VSCode)**: 
+   - Baixe e instale o [VSCode](https://code.visualstudio.com/).
+   
+2. **Node.js**:
+   - Baixe e instale o [Node.js](https://nodejs.org/).
+   
+3. **MySQL**:
+   - Você pode escolher entre duas ferramentas para gerenciar o MySQL:
+     - **Workbench**: Baixe e instale o [MySQL Workbench](https://dev.mysql.com/downloads/workbench/).
+     - **TablePlus**: Baixe e instale o [TablePlus](https://tableplus.com/).
+
+4. **XAMPP**:
+   - Baixe e instale o [XAMPP](https://www.apachefriends.org/index.html).
+
+#### 2. Configurar o MySQL
+1. Abra o **XAMPP** e inicie os serviços **Apache** e **MySQL**.
+2. Abra o **MySQL Workbench** ou **TablePlus** e conecte-se ao servidor MySQL.
+3. Crie um banco de dados com o nome `toughts`. Você pode usar o seguinte comando SQL:
+   ```sql
+   CREATE DATABASE toughts;
+   ```
+
+#### 3. Configurar o Projeto
+1. Abra o VSCode.
+2. Abra a pasta do projeto no VSCode.
+3. Se estiver sem módulos, abra um terminal no caminho raiz do projeto e execute um dos seguintes comandos:
+   ```
+   npm i
+   ```
+   ou
+   ```
+   npm install
+   ```
+
+#### 4. Executar o Projeto
+1. No terminal, execute o comando:
+   ```
+   npm start
+   ```
+2. O projeto irá rodar no `localhost:3000`.
+3. As tabelas serão geradas automaticamente pelo Sequelize ao iniciar o projeto.
